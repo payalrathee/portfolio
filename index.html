@@ -23,6 +23,9 @@
       --text-muted: #4e5668;
       --green: #4ade80;
       --tag-bg: #1e2330;
+      --glow: 0 0 18px rgba(108, 99, 255, 0.55), 0 0 40px rgba(108, 99, 255, 0.25);
+      --glow-sm: 0 0 10px rgba(108, 99, 255, 0.5), 0 0 22px rgba(108, 99, 255, 0.2);
+      --glow-text: 0 0 20px rgba(139, 131, 255, 0.7);
     }
 
     html { scroll-behavior: smooth; }
@@ -57,6 +60,7 @@
       font-size: 18px;
       font-weight: 500;
       color: var(--accent-light);
+      text-shadow: var(--glow-text);
     }
 
     .nav-links {
@@ -105,6 +109,7 @@
       background: var(--accent);
       margin-top: 12px;
       border-radius: 2px;
+      box-shadow: var(--glow-sm);
     }
 
     /* ── HERO ── */
@@ -114,6 +119,39 @@
       align-items: center;
       padding-top: 64px;
       background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(108,99,255,0.08) 0%, transparent 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.13) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      border-radius: 50%;
+      animation: orb-float 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(108,99,255,0.08) 0%, transparent 70%);
+      bottom: 0;
+      left: 5%;
+      border-radius: 50%;
+      animation: orb-float 10s ease-in-out infinite reverse;
+      pointer-events: none;
+    }
+
+    @keyframes orb-float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
     }
 
     .hero-inner {
@@ -137,6 +175,7 @@
       letter-spacing: -0.02em;
       color: var(--text);
       margin-bottom: 12px;
+      text-shadow: 0 0 40px rgba(139, 131, 255, 0.35);
     }
 
     .hero-title {
@@ -149,6 +188,7 @@
     .hero-title span {
       color: var(--accent-light);
       font-weight: 500;
+      text-shadow: var(--glow-text);
     }
 
     .hero-bio {
@@ -179,7 +219,7 @@
       transition: border-color 0.2s, color 0.2s;
     }
 
-    .contact-chip:hover { border-color: var(--accent); color: var(--text); }
+    .contact-chip:hover { border-color: var(--accent); color: var(--text); box-shadow: var(--glow-sm); }
     .contact-chip svg { flex-shrink: 0; }
 
     .hero-cta {
@@ -206,7 +246,7 @@
       border: 1px solid var(--accent);
     }
 
-    .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); }
+    .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); box-shadow: var(--glow); }
 
     .btn-ghost {
       background: transparent;
@@ -233,7 +273,7 @@
       transition: border-color 0.2s;
     }
 
-    .skill-card:hover { border-color: var(--accent); }
+    .skill-card:hover { border-color: var(--accent); box-shadow: var(--glow-sm); }
 
     .skill-card-label {
       font-size: 11px;
@@ -288,6 +328,7 @@
       flex-shrink: 0;
       position: relative;
       z-index: 1;
+      box-shadow: var(--glow-sm);
     }
 
     .timeline-line {
@@ -308,7 +349,7 @@
       transition: border-color 0.2s;
     }
 
-    .exp-card:hover { border-color: var(--accent); }
+    .exp-card:hover { border-color: var(--accent); box-shadow: var(--glow-sm); }
 
     .exp-header {
       display: flex;
@@ -387,7 +428,7 @@
       transition: border-color 0.2s, transform 0.2s;
     }
 
-    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: var(--glow); }
 
     .project-card-top {
       display: flex;
@@ -445,7 +486,7 @@
       transition: border-color 0.2s;
     }
 
-    .edu-card:hover { border-color: var(--accent); }
+    .edu-card:hover { border-color: var(--accent); box-shadow: var(--glow-sm); }
 
     .edu-degree {
       font-size: 18px;
@@ -554,7 +595,7 @@
       overflow: hidden;
     }
 
-    .lang-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+    .lang-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; box-shadow: 0 0 8px rgba(108, 99, 255, 0.7); }
 
     /* ── FOOTER ── */
     footer {
