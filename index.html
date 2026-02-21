@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payal Rathee — Web Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #13161e;
+      --surface2: #1a1e28;
+      --border: #252a38;
+      --accent: #6c63ff;
+      --accent-light: #8b83ff;
+      --accent-dim: rgba(108, 99, 255, 0.12);
+      --text: #e8eaf0;
+      --text-secondary: #8891a8;
+      --text-muted: #4e5668;
+      --green: #4ade80;
+      --tag-bg: #1e2330;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(13, 15, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--accent-light);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── SECTIONS ── */
+    section { padding: 90px 5%; }
+    .section-inner { max-width: 1000px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 48px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 3px;
+      background: var(--accent);
+      margin-top: 12px;
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+      background: radial-gradient(ellipse 60% 50% at 70% 50%, rgba(108,99,255,0.08) 0%, transparent 70%);
+    }
+
+    .hero-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-greeting {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-name {
+      font-size: clamp(42px, 7vw, 72px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .hero-title span {
+      color: var(--accent-light);
+      font-weight: 500;
+    }
+
+    .hero-bio {
+      max-width: 560px;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 40px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .contact-chip:hover { border-color: var(--accent); color: var(--text); }
+    .contact-chip svg { flex-shrink: 0; }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover { border-color: var(--text-secondary); color: var(--text); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--surface); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+
+    .skill-card:hover { border-color: var(--accent); }
+
+    .skill-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 4px 12px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline { display: flex; flex-direction: column; gap: 32px; }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 24px;
+      position: relative;
+    }
+
+    .timeline-dot-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 6px;
+    }
+
+    .timeline-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-line {
+      flex: 1;
+      width: 1px;
+      background: var(--border);
+      margin-top: 6px;
+    }
+
+    .timeline-item:last-child .timeline-line { display: none; }
+
+    .exp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 8px;
+      transition: border-color 0.2s;
+    }
+
+    .exp-card:hover { border-color: var(--accent); }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .exp-role {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .exp-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .exp-company {
+      font-size: 13px;
+      color: var(--accent-light);
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 11px;
+      top: 3px;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .project-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .project-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-dim);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-light);
+    }
+
+    .project-links { display: flex; gap: 12px; }
+
+    .project-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+
+    .project-link:hover { color: var(--accent-light); }
+
+    .project-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .edu-card:hover { border-color: var(--accent); }
+
+    .edu-degree {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .edu-inst {
+      font-size: 14px;
+      color: var(--accent-light);
+      margin-bottom: 12px;
+    }
+
+    .edu-courses {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.8;
+      max-width: 520px;
+    }
+
+    .edu-meta {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .edu-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .edu-score-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .edu-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* ── EXTRAS ── */
+    .extras-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .extras-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .extras-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .cert-item, .lang-item, .achieve-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .cert-item:last-child, .lang-item:last-child, .achieve-item:last-child { border-bottom: none; }
+
+    .cert-item svg, .achieve-item svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+
+    .lang-bar-wrap {
+      flex: 1;
+    }
+
+    .lang-name {
+      font-weight: 500;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .lang-level {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .lang-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .lang-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 40px 5%;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    footer a { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      section { padding: 70px 4%; }
+      .edu-card { flex-direction: column; }
+      .edu-meta { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PR</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#extras">More</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="about">
+  <div class="hero-inner">
+    <p class="hero-greeting">// Hello, world!</p>
+    <h1 class="hero-name">Payal Rathee</h1>
+    <p class="hero-title">Full Stack <span>Web Developer</span></p>
+    <p class="hero-bio">
+      B.Tech in Computer Science with hands-on experience building scalable web applications,
+      WordPress plugins, and full-stack solutions. Passionate about clean code, intuitive interfaces,
+      and backend systems that scale.
+    </p>
+
+    <div class="hero-contacts">
+      <a class="contact-chip" href="mailto:payalrathee35@gmail.com">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        payalrathee35@gmail.com
+      </a>
+      <a class="contact-chip" href="tel:+917056570991">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.37h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +91 7056570991
+      </a>
+      <a class="contact-chip" href="https://linkedin.com/in/payalrathee" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        linkedin.com/in/payalrathee
+      </a>
+      <a class="contact-chip" href="https://github.com/payalrathee" target="_blank" rel="noopener">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        github.com/payalrathee
+      </a>
+      <span class="contact-chip">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        India
+      </span>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:payalrathee35@gmail.com">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        Get in Touch
+      </a>
+      <a class="btn btn-ghost" href="https://github.com/payalrathee" target="_blank" rel="noopener">
+        <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        View GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">// 01</p>
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-label">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Languages
+        </div>
+        <div class="tags">
+          <span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span>
+          <span class="tag">PHP</span><span class="tag">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-label">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          Frontend
+        </div>
+        <div class="tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          <span class="tag">React</span><span class="tag">Bootstrap</span><span class="tag">Tailwind</span>
+          <span class="tag">jQuery</span><span class="tag">AJAX</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-label">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Backend
+        </div>
+        <div class="tags">
+          <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">Spring</span>
+          <span class="tag">Hibernate</span><span class="tag">JPA</span><span class="tag">JSP</span>
+          <span class="tag">Servlet</span><span class="tag">PHP</span><span class="tag">WordPress</span>
+          <span class="tag">REST API</span><span class="tag">MERN</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-card-label">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          Tools & Infra
+        </div>
+        <div class="tags">
+          <span class="tag">Git</span><span class="tag">Docker</span><span class="tag">AWS EC2</span>
+          <span class="tag">AWS EBS</span><span class="tag">AWS ELB</span><span class="tag">Nginx</span>
+          <span class="tag">Apache</span><span class="tag">MySQL</span><span class="tag">MongoDB</span>
+          <span class="tag">Postman</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label">// 02</p>
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot-col">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <div class="exp-role">Web Developer</div>
+              <div class="exp-date">Jun 2023 – Oct 2024</div>
+            </div>
+            <div class="exp-company">Media Jedi &mdash; Remote</div>
+            <ul class="exp-bullets">
+              <li>Developed the <strong>User Private Files</strong> WordPress plugin, improving file-sharing for 1,000+ users</li>
+              <li>Integrated role-based file sharing, public access, zip downloads, and pre-configured folders — resulting in <strong>30% increase in user engagement</strong></li>
+              <li>Built a backend file manager for admin-level file management within the plugin</li>
+              <li>Developed <em>text-file-editor</em> and <em>custom-fields</em> addons that extended core plugin functionality</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot-col">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <div class="exp-role">Full Stack Developer Intern</div>
+              <div class="exp-date">Feb 2023 – May 2023</div>
+            </div>
+            <div class="exp-company">Media Jedi &mdash; New Delhi</div>
+            <ul class="exp-bullets">
+              <li>Worked on <strong>Boost Fundz</strong> fundraising platform, contributing to cross-functional team delivery</li>
+              <li>Integrated frontend and backend layers using MySQL and MongoDB</li>
+              <li>Maintained clean, maintainable code following industry best practices</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot-col">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div>
+          <div class="exp-card">
+            <div class="exp-header">
+              <div class="exp-role">Technical Content Writer</div>
+              <div class="exp-date">Oct 2022 – Jan 2023</div>
+            </div>
+            <div class="exp-company">GeeksforGeeks &mdash; Remote</div>
+            <ul class="exp-bullets">
+              <li>Authored technical articles covering Core Java, Spring, Hibernate, JPA, JSP, and Servlet</li>
+              <li>Published <strong>15+ articles</strong> on the GFG portal read by thousands of developers</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">// 03</p>
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/payalrathee" target="_blank" rel="noopener">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+            <a class="project-link" href="#" target="_blank" rel="noopener">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live
+            </a>
+          </div>
+        </div>
+        <div class="project-name">ContactPal</div>
+        <div class="project-desc">
+          Contact Manager Application with Spring Security — authentication, role-based access control, and encrypted data storage.
+        </div>
+        <div class="tags">
+          <span class="tag">Spring Boot</span><span class="tag">Hibernate</span>
+          <span class="tag">Thymeleaf</span><span class="tag">MySQL</span>
+          <span class="tag">Spring Security</span><span class="tag">Maven</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-top">
+          <div class="project-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="project-links">
+            <a class="project-link" href="https://github.com/payalrathee" target="_blank" rel="noopener">
+              <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
+            </a>
+          </div>
+        </div>
+        <div class="project-name">Virtaula</div>
+        <div class="project-desc">
+          Web-based course management platform for educational institutions. Admin panel for organizing and managing course information.
+        </div>
+        <div class="tags">
+          <span class="tag">Spring Boot</span><span class="tag">Thymeleaf</span>
+          <span class="tag">Hibernate</span><span class="tag">MySQL</span>
+          <span class="tag">Maven</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <p class="section-label">// 04</p>
+    <h2 class="section-title">Education</h2>
+    <div class="edu-card">
+      <div>
+        <div class="edu-degree">Bachelor of Technology — Computer Science &amp; Engineering</div>
+        <div class="edu-inst">University Institute of Engineering and Technology</div>
+        <div class="edu-courses">
+          Operating Systems &bull; DBMS &bull; Computer Networks &bull; Compiler Design &bull;
+          Web Technologies &bull; Data Structures &amp; Algorithms &bull;
+          Design and Analysis of Algorithms &bull; SDLC
+        </div>
+      </div>
+      <div class="edu-meta">
+        <div class="edu-score">83.8<span style="font-size:16px;color:var(--text-muted)">/100</span></div>
+        <div class="edu-score-label">Percentage</div>
+        <div class="edu-period">2019 – 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRAS -->
+<section id="extras">
+  <div class="section-inner">
+    <p class="section-label">// 05</p>
+    <h2 class="section-title">More</h2>
+    <div class="extras-grid">
+
+      <div class="extras-card">
+        <div class="extras-card-title">Certifications</div>
+        <div class="cert-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <span>React JS – Complete Guide for Frontend Web Development <span style="color:var(--text-muted);font-size:12px">(Udemy)</span></span>
+        </div>
+        <div class="cert-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          <span>Web Development Masterclass – Online Certification Course <span style="color:var(--text-muted);font-size:12px">(Udemy)</span></span>
+        </div>
+      </div>
+
+      <div class="extras-card">
+        <div class="extras-card-title">Achievements</div>
+        <div class="achieve-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>100 Days Badge 2024 — LeetCode</span>
+        </div>
+        <div class="achieve-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Silver Badge in C — HackerRank</span>
+        </div>
+        <div class="achieve-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span>Silver Badge in Java — HackerRank</span>
+        </div>
+      </div>
+
+      <div class="extras-card">
+        <div class="extras-card-title">Languages</div>
+        <div class="lang-item">
+          <div class="lang-bar-wrap">
+            <div class="lang-name">Hindi</div>
+            <div class="lang-level">Native</div>
+            <div class="lang-bar"><div class="lang-bar-fill" style="width:100%"></div></div>
+          </div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-bar-wrap">
+            <div class="lang-name">English</div>
+            <div class="lang-level">Proficient</div>
+            <div class="lang-bar"><div class="lang-bar-fill" style="width:80%"></div></div>
+          </div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-bar-wrap">
+            <div class="lang-name">French</div>
+            <div class="lang-level">Beginner</div>
+            <div class="lang-bar"><div class="lang-bar-fill" style="width:20%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed &amp; built by <a href="mailto:payalrathee35@gmail.com">Payal Rathee</a> &mdash; 2024</p>
+</footer>
+
+</body>
+</html>
